@@ -26,7 +26,8 @@ class StimgidsEvaluator:
 		"""
 
 		# story_img_ids -> pred story str
-		stimgids_to_Res = { item['stimgids']: [item['pred_story_str']] for item in self.preds }
+		stimgids_to_Res = {item['stimgids']: [item['pred_story_str'].encode('ascii', 'ignore').decode('ascii')]
+						for item in self.preds }
 
 		# story_img_ids -> gt storie str(s)
 		stimgids_to_stories = {}
@@ -48,13 +49,7 @@ class StimgidsEvaluator:
 				gd_story_strs += [gd_story_str]
 			stimgids_to_Gts[stimgids] = gd_story_strs
 
-			# # test
-			# print stimgids
-			# print stimgids_to_Res[stimgids][0]
-			# for gd_story_str in stimgids_to_Gts[stimgids]:
-			# 	print gd_story_str
-
-		# # tokenize
+		# tokenize
 		# print 'tokenization ... '
 		# tokenizer = PTBTokenizer()
 		# self.stimgids_to_Res = tokenizer.tokenize(stimgids_to_Res)
