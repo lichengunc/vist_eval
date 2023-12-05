@@ -60,7 +60,7 @@ class StimgidsEvaluator:
 		# =================================================
 		# Set up scorers
 		# =================================================
-		print 'setting up scorers...'
+		print('setting up scorers...')
 		scorers = []
 		if not measure:
 			scorers = [
@@ -83,17 +83,17 @@ class StimgidsEvaluator:
 		# Compute scores
 		# =================================================
 		for scorer, method in scorers:
-			print 'computing %s score ...' % (scorer.method())
+			print('computing %s score ...' % (scorer.method()))
 			score, scores = scorer.compute_score(self.stimgids_to_Gts, self.stimgids_to_Res)
 			if type(method) == list:
 				for sc, scs, m in zip(score, scores, method):
 					self.setEval(sc, m)
 					self.setStimgidsToEval(scs, self.stimgids_to_Gts.keys(), m)
-					print '%s: %.3f' % (m, sc)
+					print('%s: %.3f' % (m, sc))
 			else:
 				self.setEval(score, method)
 				self.setStimgidsToEval(scores, self.stimgids_to_Gts.keys(), method)
-				print '%s: %.3f' % (method, score)
+				print('%s: %.3f' % (method, score))
 
 		self.setEvalStimgids()
 
